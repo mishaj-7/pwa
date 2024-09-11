@@ -1,0 +1,90 @@
+---
+// src/components/ProductCard.astro
+interface Props {
+  id: string;
+  title: string;
+  image: string;
+  price: number;
+}
+
+const { id, title, image, price } = Astro.props;
+---
+
+<div class="product-card">
+  <img src={image} alt={title} />
+  <h2>{title}</h2>
+  <p class="price">${price.toFixed(2)}</p>
+  <button class="add-to-cart" data-product-id={id}>Add to Cart</button>
+</div>
+
+<style>
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  h2 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-weight: bold;
+    color: #0077cc;
+  }
+
+  .add-to-cart {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-to-cart:hover {
+    background-color: #005fa3;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', async (e) => {
+      const productId = e.target.getAttribute('data-product-id');
+      try {
+        const response = await fetch('/api/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId }),
+        });
+
+        if (response.ok) {
+          console.log('Product added to cart');
+          alert('Product added to cart!');
+        } else {
+          console.error('Failed to add product to cart');
+          alert('Failed to add product to cart. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prodcuts",
+  "info": {
+    "singularName": "prodcut",
+    "pluralName": "prodcuts",
+    "displayName": "prodcut",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::prodcut.prodcut"
+    },
+    "iphone": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

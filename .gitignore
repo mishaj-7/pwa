@@ -1,0 +1,115 @@
+# Build output
+dist/
+
+# Generated types (astro)
+.astro/
+
+# Dependencies (common for most projects)
+node_modules/
+
+# Logs (common for most projects)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables (common for most projects)
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# IDE settings (common for most projects)
+.idea/
+
+############################
+# Strapi
+############################
+
+# OS X specific (consider if both OS X and other OSes are relevant)
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+._*
+
+# Linux specific (consider if both Linux and other OSes are relevant)
+*~
+
+# Windows specific (consider if both Windows and other OSes are relevant)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Packages (common for most projects)
+*.7z
+*.csv
+*.dat
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.seed
+*.so
+*.swo
+*.swp
+*.swn
+*.swm
+*.out
+*.pid
+
+# Logs and databases (common for most projects, consider if applicable)
+.tmp
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+
+# Misc. (some specific to Strapi, some common)
+*#  (consider if necessary)
+ssl  (consider if necessary)
+
+# Additional Strapi-specific files
+exports
+.strapi
+dist
+build
+.strapi-updater.json
+.strapi-cloud.json
+
+# Public folder uploads (Strapi specific)
+public/uploads/*
+
+# Ignore empty .gitkeep file in public/uploads (Strapi specific)
+!public/uploads/.gitkeep
+
+# Node.js specific (common for most projects)
+lib-cov
+lcov.info
+pids
+logs
+results
+.node_history
+
+# Tests (common for most projects)
+coverage
+
+# License file (common for most projects)
+license.txt
+

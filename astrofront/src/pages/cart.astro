@@ -1,0 +1,63 @@
+---
+// src/pages/cart.astro
+import Layout from '../layouts/Layout.astro';
+
+// In a real application, you would fetch this data from your API
+const cartItems = [
+  { id: '1', title: 'Product 1', price: 19.99, quantity: 2 },
+  { id: '2', title: 'Product 2', price: 29.99, quantity: 1 },
+];
+---
+
+<Layout title="Shopping Cart">
+  <main>
+    <h1>Shopping Cart</h1>
+    <div id="cart-items">
+      {cartItems.map(item => (
+        <div class="cart-item">
+          <h3>{item.title}</h3>
+          <p>Price: ${item.price.toFixed(2)}</p>
+          <p>Quantity: {item.quantity}</p>
+          <button class="remove-from-cart" data-product-id={item.id}>Remove</button>
+        </div>
+      ))}
+    </div>
+    <div id="cart-total">
+      <h2>Total: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</h2>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  document.querySelectorAll('.remove-from-cart').forEach(button => {
+    button.addEventListener('click', async (e) => {
+      const productId = e.target.getAttribute('data-product-id');
+      try {
+        const response = await fetch('/api/cart/remove', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId }),
+        });
+
+        if (response.ok) {
+          console.log('Product removed from cart');
+          // You would typically update the UI here
+        } else {
+          console.error('Failed to remove product from cart');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+</script>
+
+<style>
+  .cart-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+</style>
